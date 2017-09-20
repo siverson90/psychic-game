@@ -1,9 +1,0 @@
-1. User input letter on keyboard.
-
-2. Computer choose's random letter from array
-
-3. After user key's in letter guesses will derement by one unless guess is correct
-
-4. If user guess's correctly restart game and increase wins' by 1.
-
-5. If user runs out of guesse's increase losses by 1.
