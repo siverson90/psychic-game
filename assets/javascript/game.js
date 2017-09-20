@@ -4,15 +4,14 @@ var numGuess= 9;
 var guessArr=[];
   
 // computer picks random letter and can't be changed
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-// List to validate userChoices is avaliable on keyboard
-var userChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 var computerGuess;
 // computer picks a number
 function reset(){
-  computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+  guessArr = [];
+  numGuess= 9;
+  computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
  };
 
 reset();
@@ -31,14 +30,10 @@ document.onkeyup = function(event){
       else if (userGuess !== computerGuess && numGuess === 1) 
       {
         losses++;
-        guessArr = [];
-        numGuess= 9;
         reset();
        } 
       else if (userGuess === computerGuess){
         wins++;
-        guessArr=[];
-        numGuess= 9;
         reset();
         }
       } else {
@@ -47,13 +42,17 @@ document.onkeyup = function(event){
 
 
 // console.log for debugging
-console.log(computerGuess);
-
+  renderInfo ()
 // show on the screen to user
-document.getElementById("winsId").innerHTML = wins;
-document.getElementById("lossesId").innerHTML = losses;
-document.getElementById("guessesLeftId").innerHTML = numGuess;
-document.getElementById("guessesId").innerHTML = guessArr;
+
 
 };
+
+function renderInfo (){
+  document.getElementById("winsId").innerHTML = wins;
+  document.getElementById("lossesId").innerHTML = losses;
+  document.getElementById("guessesLeftId").innerHTML = numGuess;
+  document.getElementById("guessesId").innerHTML = guessArr;
+
+}
 
