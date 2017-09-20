@@ -2,7 +2,6 @@ var wins= 0;
 var losses= 0;
 var numGuess= 9;
 var guessArr=[];
-
   
 // computer picks random letter and can't be changed
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -10,43 +9,45 @@ var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // List to validate userChoices is avaliable on keyboard
 var userChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+var computerGuess;
 // computer picks a number
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
- 
- // Trying to see if I can restart game by having computer pick a new number.
+function reset(){
+  computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+ };
 
-// computer guess assigned to variable to use in function event.
-var computerFixedGuess = computerGuess
+reset();
 
-// Runs through to to see if user gets the answer right or wrong
   
 document.onkeyup = function(event){
   var userGuess= event.key;
   
   // put into if statement to check for a-z
-  if(userChoices.indexOf(userGuess) !== -1) {
+  if(guessArr.indexOf(userGuess) === -1) {
     guessArr.push(event.key);
-  }
   // If condiitionalfor assigning points
-  if(userGuess !== computerFixedGuess && numGuess > 0)  {
+  if(userGuess !== computerGuess && numGuess > 1)  {
        numGuess--;
       } 
-      else if (userGuess !== computerFixedGuess && numGuess === 0) 
+      else if (userGuess !== computerGuess && numGuess === 1) 
       {
         losses++;
         guessArr = [];
         numGuess= 9;
-        // reset(i);
+        reset();
        } 
-      else {
+      else if (userGuess === computerGuess){
         wins++;
         guessArr=[];
         numGuess= 9;
-        // reset(i);
+        reset();
         }
+      } else {
+        alert("already guessed");
+      }
+
 
 // console.log for debugging
-console.log(computerFixedGuess);
+console.log(computerGuess);
 
 // show on the screen to user
 document.getElementById("winsId").innerHTML = wins;
