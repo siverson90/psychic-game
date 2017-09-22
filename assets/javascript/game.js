@@ -34,6 +34,7 @@ document.onkeyup = function(event){
        } 
       else if (userGuess === computerGuess){
         wins++;
+        alert("You beat the computer!");
         reset();
         }
       } else {
@@ -41,7 +42,7 @@ document.onkeyup = function(event){
       }
 
 
-// console.log for debugging
+    console.log("computer guess is " + computerGuess);
   renderInfo ()
 // show on the screen to user
 
